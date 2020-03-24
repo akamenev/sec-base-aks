@@ -3,6 +3,3 @@ provider "azurerm" {
   features {}
 }
 
-# https://www.terraform.io/docs/providers/azuread/index.html
-provider "azuread" {
-}
