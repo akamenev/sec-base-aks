@@ -2,7 +2,6 @@ resource "azurerm_resource_group" "fw-hub-aks" {
   name     = var.resource_group_name
   location = var.location
 
-  depends_on = [azuread_service_principal.aks_sp]
 }
 
 resource "azurerm_virtual_network" "aks-vnet" {
