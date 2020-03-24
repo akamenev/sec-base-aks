@@ -18,41 +18,12 @@ resource "azurerm_firewall" "aks-hub-fw" {
   }
 }
 
+
 resource "azurerm_firewall_network_rule_collection" "fw-net-rule-1" {
   name                = "aks-fw-rule-1"
   azure_firewall_name = azurerm_firewall.aks-hub-fw.name
   resource_group_name = azurerm_resource_group.fw-hub-aks.name
   priority            = 100
-  action              = "Allow"
-
-  rule {
-    name = "ssh"
-    source_addresses = [
-      "*",
-    ]
-
-    destination_ports = [
-      "9000",
-      "443",
-    ]
-
-    destination_addresses = [
-      "*",
-    ]
-
-    protocols = [
-      "TCP",
-    ]
-
-  }
-
-}
-
-resource "azurerm_firewall_network_rule_collection" "fw-net-rule-2" {
-  name                = "aks-fw-rule-2"
-  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
-  resource_group_name = azurerm_resource_group.fw-hub-aks.name
-  priority            = 200
   action              = "Allow"
 
   rule {
@@ -77,69 +48,11 @@ resource "azurerm_firewall_network_rule_collection" "fw-net-rule-2" {
 
 }
 
-resource "azurerm_firewall_network_rule_collection" "fw-net-rule-3" {
-  name                = "aks-fw-rule-3"
+resource "azurerm_firewall_network_rule_collection" "fw-net-rule-2" {
+  name                = "aks-fw-rule-2"
   azure_firewall_name = azurerm_firewall.aks-hub-fw.name
   resource_group_name = azurerm_resource_group.fw-hub-aks.name
-  priority            = 300
-  action              = "Allow"
-
-  rule {
-    name = "gitssh"
-    source_addresses = [
-      "*",
-    ]
-
-    destination_ports = [
-      "22",
-    ]
-
-    destination_addresses = [
-      "*",
-    ]
-
-    protocols = [
-      "TCP",
-    ]
-
-  }
-
-}
-
-resource "azurerm_firewall_network_rule_collection" "fw-net-rule-4" {
-  name                = "aks-fw-rule-4"
-  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
-  resource_group_name = azurerm_resource_group.fw-hub-aks.name
-  priority            = 400
-  action              = "Allow"
-
-  rule {
-    name = "fileshare"
-    source_addresses = [
-      "*",
-    ]
-
-    destination_ports = [
-      "445",
-    ]
-
-    destination_addresses = [
-      "*",
-    ]
-
-    protocols = [
-      "TCP",
-    ]
-
-  }
-
-}
-
-resource "azurerm_firewall_network_rule_collection" "fw-net-rule-5" {
-  name                = "aks-fw-rule-5"
-  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
-  resource_group_name = azurerm_resource_group.fw-hub-aks.name
-  priority            = 500
+  priority            = 200
   action              = "Allow"
 
   rule {
