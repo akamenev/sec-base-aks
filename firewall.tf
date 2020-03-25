@@ -77,6 +77,65 @@ resource "azurerm_firewall_network_rule_collection" "fw-net-rule-2" {
 
 }
 
+resource "azurerm_firewall_network_rule_collection" "fw-net-rule-3" {
+  name                = "aks-fw-rule-3"
+  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
+  resource_group_name = azurerm_resource_group.fw-hub-aks.name
+  priority            = 300
+  action              = "Allow"
+
+  rule {
+    name = "aks-tcp"
+    source_addresses = [
+      "*",
+    ]
+
+    destination_ports = [
+      "22",
+      "9000",
+    ]
+
+    destination_addresses = [
+      "*",
+    ]
+
+    protocols = [
+      "UDP",
+    ]
+
+  }
+
+}
+
+resource "azurerm_firewall_network_rule_collection" "fw-net-rule-4" {
+  name                = "aks-fw-rule-3"
+  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
+  resource_group_name = azurerm_resource_group.fw-hub-aks.name
+  priority            = 400
+  action              = "Allow"
+
+  rule {
+    name = "aks-udp"
+    source_addresses = [
+      "*",
+    ]
+
+    destination_ports = [
+      "1194",
+    ]
+
+    destination_addresses = [
+      "*",
+    ]
+
+    protocols = [
+      "UDP",
+    ]
+
+  }
+
+}
+
 resource "azurerm_firewall_application_rule_collection" "fw-app-rule" {
   name                = "aks-app-rule"
   azure_firewall_name = azurerm_firewall.aks-hub-fw.name
@@ -121,10 +180,6 @@ resource "azurerm_firewall_application_rule_collection" "fw-app-rule" {
       type = "Https"
     }
 
-    protocol {
-      port = "80"
-      type = "Http"
-    }
   }
 
 }
