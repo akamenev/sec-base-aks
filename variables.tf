@@ -20,7 +20,7 @@ variable "cluster_name" {
 }
 
 variable "username" {
-  default = "akamenev"
+  default = "aksadmin"
 }
 
 variable "resource_group_name" {
