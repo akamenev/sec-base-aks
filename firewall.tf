@@ -108,7 +108,7 @@ resource "azurerm_firewall_network_rule_collection" "fw-net-rule-3" {
 }
 
 resource "azurerm_firewall_network_rule_collection" "fw-net-rule-4" {
-  name                = "aks-fw-rule-3"
+  name                = "aks-fw-rule-4"
   azure_firewall_name = azurerm_firewall.aks-hub-fw.name
   resource_group_name = azurerm_resource_group.fw-hub-aks.name
   priority            = 400
