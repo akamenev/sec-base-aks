@@ -100,7 +100,7 @@ resource "azurerm_firewall_network_rule_collection" "fw-net-rule-3" {
     ]
 
     protocols = [
-      "UDP",
+      "TCP",
     ]
 
   }
