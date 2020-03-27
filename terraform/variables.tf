@@ -16,7 +16,7 @@
 # }
 
 variable "cluster_name" {
-  default = "fw-sec-aks"
+  default = "sec-aks"
 }
 
 variable "username" {

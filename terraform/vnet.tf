@@ -18,13 +18,6 @@ resource "azurerm_subnet" "aks-subnet" {
   virtual_network_name = azurerm_virtual_network.aks-vnet.name
 }
 
-resource "azurerm_subnet" "bastion-subnet" {
-  name                 = "bastion-subnet"
-  resource_group_name  = azurerm_resource_group.fw-hub-aks.name
-  address_prefix       = "10.0.1.0/27"
-  virtual_network_name = azurerm_virtual_network.aks-vnet.name
-}
-
 resource "azurerm_subnet" "ingress-subnet" {
   name                 = "ingress-subnet"
   resource_group_name  = azurerm_resource_group.fw-hub-aks.name
@@ -33,7 +26,7 @@ resource "azurerm_subnet" "ingress-subnet" {
 }
 
 resource "azurerm_virtual_network" "hub-vnet" {
-  name                = "${var.cluster_name}-hub-vnet"
+  name                = "${var.cluster_name}-hub"
   address_space       = ["192.168.0.0/16"]
   location            = azurerm_resource_group.fw-hub-aks.location
   resource_group_name = azurerm_resource_group.fw-hub-aks.name
@@ -50,6 +43,14 @@ resource "azurerm_subnet" "mgmt-subnet" {
   name                 = "mgmt-subnet"
   resource_group_name  = azurerm_resource_group.fw-hub-aks.name
   address_prefix       = "192.168.2.0/24"
+  virtual_network_name = azurerm_virtual_network.hub-vnet.name
+}
+
+
+resource "azurerm_subnet" "bastion-subnet" {
+  name                 = "bastion-subnet"
+  resource_group_name  = azurerm_resource_group.fw-hub-aks.name
+  address_prefix       = "10.168.3.0/24"
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
 }
 
