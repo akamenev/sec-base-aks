@@ -18,7 +18,6 @@ resource "azurerm_firewall" "aks-hub-fw" {
   }
 }
 
-
 resource "azurerm_firewall_network_rule_collection" "fw-net-rule-1" {
   name                = "aks-fw-rule-1"
   azure_firewall_name = azurerm_firewall.aks-hub-fw.name
@@ -77,65 +76,6 @@ resource "azurerm_firewall_network_rule_collection" "fw-net-rule-2" {
 
 }
 
-resource "azurerm_firewall_network_rule_collection" "fw-net-rule-3" {
-  name                = "aks-fw-rule-3"
-  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
-  resource_group_name = azurerm_resource_group.fw-hub-aks.name
-  priority            = 300
-  action              = "Allow"
-
-  rule {
-    name = "aks-tcp"
-    source_addresses = [
-      "*",
-    ]
-
-    destination_ports = [
-      "22",
-      "9000",
-    ]
-
-    destination_addresses = [
-      "*",
-    ]
-
-    protocols = [
-      "TCP",
-    ]
-
-  }
-
-}
-
-resource "azurerm_firewall_network_rule_collection" "fw-net-rule-4" {
-  name                = "aks-fw-rule-4"
-  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
-  resource_group_name = azurerm_resource_group.fw-hub-aks.name
-  priority            = 400
-  action              = "Allow"
-
-  rule {
-    name = "aks-udp"
-    source_addresses = [
-      "*",
-    ]
-
-    destination_ports = [
-      "1194",
-    ]
-
-    destination_addresses = [
-      "*",
-    ]
-
-    protocols = [
-      "UDP",
-    ]
-
-  }
-
-}
-
 resource "azurerm_firewall_application_rule_collection" "fw-app-rule" {
   name                = "aks-app-rule"
   azure_firewall_name = azurerm_firewall.aks-hub-fw.name
@@ -180,6 +120,43 @@ resource "azurerm_firewall_application_rule_collection" "fw-app-rule" {
       type = "Https"
     }
 
+    protocol {
+      port = "80"
+      type = "Http"
+    }
+  }
+
+}
+
+resource "azurerm_firewall_application_rule_collection" "fw-app-rule-acr" {
+  name                = "acr-app-rule"
+  azure_firewall_name = azurerm_firewall.aks-hub-fw.name
+  resource_group_name = azurerm_resource_group.fw-hub-aks.name
+  priority            = 200
+  action              = "Allow"
+
+  rule {
+    name = "ACR"
+
+    source_addresses = [
+      "*",
+    ]
+
+    target_fqdns = [
+      "${var.acr_name}.azurecr.io",
+      "${var.acr_name}.${var.location}.data.azurecr.io"
+
+    ]
+
+    protocol {
+      port = "443"
+      type = "Https"
+    }
+
+    protocol {
+      port = "80"
+      type = "Http"
+    }
   }
 
 }
@@ -224,9 +201,9 @@ resource "azurerm_firewall_nat_rule_collection" "ssh-jump" {
     destination_addresses = [
       azurerm_public_ip.fw-ip.ip_address,
     ]
-    
+
     translated_address = azurerm_linux_virtual_machine.jumpbox.private_ip_address
-    translated_port = "22"
+    translated_port    = "22"
 
     protocols = [
       "TCP",
