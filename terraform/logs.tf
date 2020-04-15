@@ -1,5 +1,5 @@
 resource "azurerm_log_analytics_workspace" "container_insights" {
-  name                = "${var.cluster_name}-aks-logs"
+  name                = "${var.cluster_name}-aks-logs-${random_string.log-string.result}"
   location            = var.location
   resource_group_name = azurerm_resource_group.fw-hub-aks.name
   sku                 = "PerGB2018"
@@ -18,9 +18,13 @@ resource "azurerm_log_analytics_solution" "container_insights" {
   }
 }
 
+resource "random_string" "log-string" {
+  length = 4
+  special = false
+}
 
 resource "azurerm_log_analytics_workspace" "firewall-logs" {
-  name                = "${var.cluster_name}-fw-logs"
+  name                = "${var.cluster_name}-fw-logs-${random_string.log-string.result}"
   location            = var.location
   resource_group_name = azurerm_resource_group.fw-hub-aks.name
   sku                 = "PerGB2018"

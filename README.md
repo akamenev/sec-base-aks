@@ -23,7 +23,7 @@ Follow the instructions for your operating system [here](https://docs.microsoft.
 git clone https://github.com/akamenev/sec-base-aks
 cd sec-base-aks/terraform
 ```
-#### Templates structure
+Templates structure:
 ```bash
 terraform
 ├── acr.tf          # contains ACR deployment with ACR Firewall Rules
