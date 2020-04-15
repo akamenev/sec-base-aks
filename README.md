@@ -23,6 +23,19 @@ Follow the instructions for your operating system [here](https://docs.microsoft.
 git clone https://github.com/akamenev/sec-base-aks
 cd sec-base-aks/terraform
 ```
+#### Templates structure
+```bash
+terraform
+├── acr.tf          # contains ACR deployment with ACR Firewall Rules
+├── akscni.tf       # contains AKS deployment with DNS Private Zone Link
+├── firewall.tf     # contains Azure Firewall deployment with Network and Application rules and Route Table
+├── jumpbox.tf      # contains Jumpbox VM deployment
+├── logs.tf         # contains Azure Log Analytics deployment
+├── providers.tf    # contains required Terraform Providers (azurerm)
+├── variables.tf    # contains required variables
+└── vnet.tf         # container Resource Group and Virtual Network deployments
+```
+
 
 ### Login to Azure with Azure CLI and Set the Environment Variables
 ```bash
