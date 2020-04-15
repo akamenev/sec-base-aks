@@ -109,10 +109,6 @@ resource "azurerm_firewall_application_rule_collection" "fw-app-rule" {
       "*.oms.opinsights.azure.com",
       "*.microsoftonline.com",
       "*.monitoring.azure.com",
-      "gov-prod-policy-data.trafficmanager.net", # Required for Azure Policy for AKS
-      "raw.githubusercontent.com",
-      "*.gk.eastus.azmk8s.io",
-      "dc.services.visualstudio.com",
     ]
 
     protocol {

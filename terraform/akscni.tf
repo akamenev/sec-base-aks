@@ -17,7 +17,7 @@ resource "azurerm_kubernetes_cluster" "akscni" {
 
   default_node_pool {
     name               = "default"
-    node_count         = 1
+    node_count         = 3
     vm_size            = "Standard_D2_v2"
     os_disk_size_gb    = 120
     max_pods           = 30
@@ -68,39 +68,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "system" {
   max_pods              = 30
   vnet_subnet_id        = azurerm_subnet.aks-subnet.id
   availability_zones    = ["1", "2", "3"]
-}
-
-resource "azurerm_kubernetes_cluster_node_pool" "azpool1" {
-  name                  = "azpool1"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.akscni.id
-  vm_size               = "Standard_F1s"
-  node_count            = 2
-  os_disk_size_gb       = 120
-  max_pods              = 30
-  vnet_subnet_id        = azurerm_subnet.aks-subnet.id
-  availability_zones    = ["1"]
-}
-
-resource "azurerm_kubernetes_cluster_node_pool" "azpool2" {
-  name                  = "azpool2"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.akscni.id
-  vm_size               = "Standard_F1s"
-  node_count            = 2
-  os_disk_size_gb       = 120
-  max_pods              = 30
-  vnet_subnet_id        = azurerm_subnet.aks-subnet.id
-  availability_zones    = ["2"]
-}
-
-resource "azurerm_kubernetes_cluster_node_pool" "azpool3" {
-  name                  = "azpool3"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.akscni.id
-  vm_size               = "Standard_F1s"
-  node_count            = 2
-  os_disk_size_gb       = 120
-  max_pods              = 30
-  vnet_subnet_id        = azurerm_subnet.aks-subnet.id
-  availability_zones    = ["3"]
 }
 
 # associate a private DNS with a hub vnet
