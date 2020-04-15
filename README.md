@@ -24,22 +24,27 @@ git clone https://github.com/akamenev/sec-base-aks
 cd sec-base-aks/terraform
 ```
 
-### Login to Azure with Azure CLI and set environment variables
+### Login to Azure with Azure CLI and Set the Environment Variables
 ```bash
 az login
 
-TF_VAR_cluster_name="sec-aks"               # Name of a cluster
-TF_VAR_username="aksadmin"                  # Username for a jumpbox and cluster user
-TF_VAR_resource_group_name="sec-aks"        # Resource group name
-TF_VAR_location="WestEurope"                # Location 
-TF_VAR_ssh_public_key="~/.ssh/id_rsa.pub"   # Location of ssh key to use
-TF_VAR_dns_prefix="sec-aks"                 # DNS prefix for a cluster
-TF_VAR_kubernetes_version="1.15.7"          # Cluster version
-TF_VAR_acr_name="secureacr"                 # Name of container registry
+export TF_VAR_cluster_name="sec-aks"               # Name of a cluster
+export TF_VAR_username="aksadmin"                  # Username for a jumpbox and cluster user
+export TF_VAR_resource_group_name="sec-aks"        # Resource group name
+export TF_VAR_location="WestEurope"                # Location 
+export TF_VAR_ssh_public_key="~/.ssh/id_rsa.pub"   # Location of ssh key to use
+export TF_VAR_dns_prefix="sec-aks"                 # DNS prefix for a cluster
+export TF_VAR_kubernetes_version="1.15.7"          # Cluster version
+export TF_VAR_acr_name="secureacr"                 # Name of container registry
 ```
 
 ### Initialize Terraform and apply the template
 ```bash
 terraform init
 terraform apply
+```
+
+### Delete the environment
+```bash
+terraform destroy
 ```
