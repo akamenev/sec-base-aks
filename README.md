@@ -33,7 +33,7 @@ terraform
 ├── logs.tf         # contains Azure Log Analytics deployment
 ├── providers.tf    # contains required Terraform Providers (azurerm)
 ├── variables.tf    # contains required variables
-└── vnet.tf         # container Resource Group and Virtual Network deployments
+└── vnet.tf         # contains Resource Group and Virtual Network deployments
 ```
 
 
