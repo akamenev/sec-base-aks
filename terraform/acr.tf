@@ -7,15 +7,15 @@ resource "azurerm_container_registry" "sec-aks-acr" {
   network_rule_set {
     default_action = "Deny"
     virtual_network {
-      action = "Allow"
+      action    = "Allow"
       subnet_id = azurerm_subnet.aks-subnet.id
     }
     virtual_network {
-      action = "Allow"
+      action    = "Allow"
       subnet_id = azurerm_subnet.mgmt-subnet.id
     }
     virtual_network {
-      action = "Allow"
+      action    = "Allow"
       subnet_id = azurerm_subnet.build-agents.id
     }
 

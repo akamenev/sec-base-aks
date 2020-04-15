@@ -16,7 +16,7 @@ resource "azurerm_subnet" "aks-subnet" {
   resource_group_name  = azurerm_resource_group.fw-hub-aks.name
   address_prefix       = "10.0.8.0/22"
   virtual_network_name = azurerm_virtual_network.aks-vnet.name
-  service_endpoints = ["Microsoft.ContainerRegistry"]
+  service_endpoints    = ["Microsoft.ContainerRegistry"]
 }
 
 resource "azurerm_subnet" "ingress-subnet" {
@@ -45,7 +45,7 @@ resource "azurerm_subnet" "mgmt-subnet" {
   resource_group_name  = azurerm_resource_group.fw-hub-aks.name
   address_prefix       = "192.168.2.0/24"
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
-  service_endpoints = ["Microsoft.ContainerRegistry"]
+  service_endpoints    = ["Microsoft.ContainerRegistry"]
 }
 
 resource "azurerm_subnet" "bastion-subnet" {
@@ -56,10 +56,10 @@ resource "azurerm_subnet" "bastion-subnet" {
 }
 
 resource "azurerm_subnet" "aux-subnet" {
-  name                                           = "aux-subnet"
-  resource_group_name                            = azurerm_resource_group.fw-hub-aks.name
-  address_prefix                                 = "192.168.4.0/24"
-  virtual_network_name                           = azurerm_virtual_network.hub-vnet.name
+  name                 = "aux-subnet"
+  resource_group_name  = azurerm_resource_group.fw-hub-aks.name
+  address_prefix       = "192.168.4.0/24"
+  virtual_network_name = azurerm_virtual_network.hub-vnet.name
 }
 
 resource "azurerm_subnet" "build-agents" {
@@ -67,7 +67,7 @@ resource "azurerm_subnet" "build-agents" {
   resource_group_name  = azurerm_resource_group.fw-hub-aks.name
   address_prefix       = "192.168.5.0/24"
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
-  service_endpoints = ["Microsoft.ContainerRegistry"]
+  service_endpoints    = ["Microsoft.ContainerRegistry"]
 }
 
 

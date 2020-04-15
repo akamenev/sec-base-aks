@@ -47,7 +47,7 @@ resource "azurerm_kubernetes_cluster" "akscni" {
     }
 
     oms_agent {
-      enabled = true
+      enabled                    = true
       log_analytics_workspace_id = azurerm_log_analytics_workspace.container_insights.id
     }
   }
