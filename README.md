@@ -61,3 +61,12 @@ terraform apply
 ```bash
 terraform destroy
 ```
+## Useful links for further security enhancement
+* [Open Policy Agent + Gatekeeper](https://kubernetes.io/blog/2019/08/06/opa-gatekeeper-policy-and-governance-for-kubernetes/)
+* [Network Policies](https://docs.microsoft.com/en-us/azure/aks/use-network-policies)
+* [Application Gateway Ingress Controller](https://docs.microsoft.com/en-us/azure/application-gateway/ingress-controller-overview)
+* [AzureAD Integration](https://docs.microsoft.com/en-us/azure/aks/azure-ad-v2)
+* [Service Mesh](https://docs.microsoft.com/en-us/azure/aks/servicemesh-about)
+* [Azure Security Center integration](https://docs.microsoft.com/en-us/azure/security-center/azure-kubernetes-service-integration)
+* [KeyVault integration](https://github.com/Azure/kubernetes-keyvault-flexvol)
+* [Cloud Native App Security + Governance Workshop](https://github.com/Azure/sg-aks-workshop)
