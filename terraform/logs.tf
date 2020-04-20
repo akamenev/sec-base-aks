@@ -31,7 +31,7 @@ resource "azurerm_log_analytics_workspace" "firewall-logs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "firewall-logs" {
-  name                       = "fw-logs"
+  name                       = "fw-logs-${random_string.log-string.result}"
   target_resource_id         = azurerm_firewall.aks-hub-fw.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.firewall-logs.id
 

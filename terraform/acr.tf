@@ -21,3 +21,13 @@ resource "azurerm_container_registry" "sec-aks-acr" {
 
   }
 }
+
+resource "azurerm_role_assignment" "acrpull" {
+  scope                = azurerm_container_registry.sec-aks-acr.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_kubernetes_cluster.akscni.kubelet_identity.0.object_id
+
+  depends_on = [
+    azurerm_kubernetes_cluster.akscni
+  ]
+}
