@@ -26,7 +26,7 @@ resource "azurerm_kubernetes_cluster" "akscni" {
     availability_zones = ["1", "2", "3"]
   }
 
-  private_link_enabled = true
+  private_cluster_enabled = true
 
   role_based_access_control {
     enabled = true
