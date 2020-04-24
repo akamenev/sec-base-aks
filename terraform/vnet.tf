@@ -49,7 +49,7 @@ resource "azurerm_subnet" "mgmt-subnet" {
 }
 
 resource "azurerm_subnet" "bastion-subnet" {
-  name                 = "bastion-subnet"
+  name                 = "AzureBastionSubnet"
   resource_group_name  = azurerm_resource_group.fw-hub-aks.name
   address_prefix       = "192.168.3.0/27"
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
