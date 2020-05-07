@@ -109,6 +109,7 @@ resource "azurerm_firewall_application_rule_collection" "fw-app-rule" {
       "*.oms.opinsights.azure.com",
       "*.microsoftonline.com",
       "*.monitoring.azure.com",
+      "*.data.mcr.microsoft.com"
     ]
 
     protocol {
