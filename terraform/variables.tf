@@ -24,7 +24,7 @@ variable "dns_prefix" {
 }
 
 variable "kubernetes_version" {
-  default = "1.15.7"
+  default = "1.17.7"
 }
 
 variable "acr_name" {

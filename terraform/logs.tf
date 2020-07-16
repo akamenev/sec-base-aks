@@ -19,7 +19,7 @@ resource "azurerm_log_analytics_solution" "container_insights" {
 }
 
 resource "random_string" "log-string" {
-  length = 4
+  length  = 4
   special = false
 }
 

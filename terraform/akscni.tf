@@ -62,12 +62,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "system" {
   name                  = "system"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.akscni.id
   vm_size               = "Standard_D2_v2"
-  node_taints           = ["CriticalAddonsOnly=True:NoSchedule"]
   node_count            = 3
   os_disk_size_gb       = 120
   max_pods              = 30
   vnet_subnet_id        = azurerm_subnet.aks-subnet.id
   availability_zones    = ["1", "2", "3"]
+  mode                  = "System"
 }
 
 # associate a private DNS with a hub vnet
